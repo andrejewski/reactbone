@@ -1,7 +1,35 @@
-reactbone
+Reactbone
 =========
 
 Reactbone extends [Backbone](http://backbonejs.org/) models and collections to better work with an immutable dependent such as [React](http://facebook.github.io/react/) by exposing two subclasses `ReactModel` and `ReactCollection`. These classes expose methods to allow a data hierarchy to be easily built between models and collections and expose access to the entire state of an application designed in such a way.
+
+## Installation
+
+### NPM 
+
+```bash
+npm install reactbone
+```
+
+### Script (Backbone and Underscore pre-bundled)
+For bundled version of Reactbone, use this repository's `reactbone.js` or install via NPM and build it yourself with Browserify.
+
+```bash
+npm run build
+```
+
+## Usage
+
+Reactbone extends Backbone so it can be used anywhere Backbone would be used. The only difference is Reactbone added its classes to Backbone.
+
+```javascript
+var Reactbone = require('reactbone');
+
+Reactbone.Model; // just Backbone.Model
+Reactbone.ReactModel;
+Reactbone.Collection; // just Backbone.Collection
+Reactbone.ReactCollection; 
+```
 
 ## Architecture
 
@@ -98,3 +126,15 @@ ReactCollection is not very extensive, it only exposes the `toReact` method, whi
 Thanks for using Reactbone. Or for at least reading this far down into the README.
 
 Follow me on [twitter](http://twitter.com/compooter) and check-out my other [repositories](http://github.com/andrejewski) if I've earned it.
+
+## Contributing
+
+Contributions are incredibly welcome as long as they are standardly applicable and pass the tests (or break bad ones). Tests are written in Mocha and assertions are done with the Node.js core `assert` module.
+
+```bash
+# running tests
+npm run test
+npm run test-spec # spec reporter
+```
+
+Follow me on [Twitter](https://twitter.com/compooter) for updates or just for the lolz and please check out my other [repositories](https://github.com/andrejewski) if I have earned it. I thank you for reading.

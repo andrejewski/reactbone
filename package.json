@@ -1,0 +1,36 @@
+{
+  "name": "reactbone",
+  "version": "0.0.1",
+  "description": "React extensions for Backbone",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "browserify lib/index.js -o reactbone.js",
+    "test": "mocha",
+    "test-spec": "mocah --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrejewski/reactbone.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "backbone",
+    "extension",
+    "class"
+  ],
+  "author": "Chris Andrejewski <christopher.andrejewski@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrejewski/reactbone/issues"
+  },
+  "homepage": "https://github.com/andrejewski/reactbone",
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "browserify": "^5.9.1",
+    "mocha": "^1.21.3"
+  }
+}
