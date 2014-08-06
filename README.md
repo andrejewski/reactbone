@@ -11,8 +11,14 @@ Reactbone extends [Backbone](http://backbonejs.org/) models and collections to b
 npm install reactbone
 ```
 
-### Script (Backbone and Underscore pre-bundled)
-For bundled version of Reactbone, use this repository's `reactbone.js` or install via NPM and build it yourself with Browserify.
+### Script
+For the bundled version of Reactbone, use this repository's `reactbone.js`. It comes with its Backbone and Underscore dependencies.
+
+```html
+<script src="reactbone.js"/>
+```
+
+To create the bundle, install via NPM and build it with the build command, which uses Browserify.
 
 ```bash
 npm run build
@@ -20,7 +26,7 @@ npm run build
 
 ## Usage
 
-Reactbone extends Backbone so it can be used anywhere Backbone would be used. The only difference is Reactbone added its classes to Backbone.
+Reactbone extends Backbone so it can be used anywhere Backbone would be used. The only difference is Reactbone adds its classes to Backbone.
 
 ```javascript
 var Reactbone = require('reactbone');
@@ -120,12 +126,6 @@ model.on('change', function(model, options) {
 ## ReactCollection
 
 ReactCollection is not very extensive, it only exposes the `toReact` method, which is needed to match the ReactModel API. All it does is map over the collection, calling each model's own `toReact` (or `toJSON`) method.
-
-## Fin
-
-Thanks for using Reactbone. Or for at least reading this far down into the README.
-
-Follow me on [twitter](http://twitter.com/compooter) and check-out my other [repositories](http://github.com/andrejewski) if I've earned it.
 
 ## Contributing
 
