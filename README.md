@@ -37,6 +37,20 @@ Reactbone.Collection; // just Backbone.Collection
 Reactbone.ReactCollection; 
 ```
 
+### Integrating with React
+
+Reactbone makes plugging into React.js as simple and expressive as possible.
+
+```javascript
+var data = Application({name: 'color-me-shocked'}), // ReactModel
+	view = React.createClass({...});
+
+data.on('change', function(model) {
+	var state = model.toReact();
+	React.renderComponent(view(state), document.body);
+});
+```
+
 ## Architecture
 
 Reactbone is the middleground between Backbone and React. Any changes on the Backbone model hierarchy propogate up to Reactbone which then serializes the models into their JSON and helpers. That data can then be passed to React classes for rendering. Within React, helpers may be called (either manually or by user interaction) and may then change the underlying Backbone data, triggering the original data flow.

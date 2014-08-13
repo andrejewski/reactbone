@@ -5,9 +5,9 @@ var _ = require('underscore'),
 
 Backbone.ReactModel = Backbone.Model.extend({
 	property: function(name, component) {
-		this.properties = this.properties || {};
 		var _this = this,
 			components = {};
+		this.properties = this.properties || {};
 		if(typeof name === 'object') components = name;
 		else if(component === void 0) return this.properties[name];
 		else components[name] = component;
@@ -16,34 +16,34 @@ Backbone.ReactModel = Backbone.Model.extend({
 			
 			// parent <- child
 			var handler = _.bind(vent, _this);
-			_this.listenTo(component, 'change add destroy remove', handler);
+			_this.listenTo(component, 'add change destroy remove reset', handler);
 			_this.toReactProps(name);
 
 			// parent -> child
 			var listener = _.bind(pass, _this);
 			_this.on('change:'+name, listener);
 			listener();
+
+			function vent(model, collectionOrValue, options) {
+				this.trigger("change:_"+name, this, this.toReactProps(name), options);
+				this.trigger("change", this, options);
+			}
+
+			function pass(model, value) {
+				if(value === void 0) value = this.get(name);
+				if(typeof value === 'object') {
+					component.set(value, {remove: false});
+					this.toReactProps(name);
+				}
+				this.unset(name);
+			}
 		});
 		return this;
-
-		function vent(model, collectionOrValue, options) {
-			this.trigger("change:_"+name, this, this.toReactProps(name), options);
-			this.trigger("change", this, options);
-		}
-
-		function pass(model, value) {
-			if(value === void 0) value = this.get('name');
-			if(typeof value === 'object') {
-				component.set(value, {remove: false});
-				this.toReactProps(name);
-			}
-			this.unset(name);
-		}
 	},
 	helper: function(name, fn) {
 		var _this = this,
 			fns = {};
-		this.helpers = this.helpers || {}
+		this.helpers = this.helpers || {};
 		if(typeof name === 'object') fns = name;
 		else if(fn === void 0) return this.helpers[name];
 		else fns[name] = fn;
@@ -80,7 +80,6 @@ Backbone.ReactCollection = Backbone.Collection.extend({
 });
 
 module.exports = Backbone;
-
 
 },{"backbone":2,"underscore":4}],2:[function(require,module,exports){
 //     Backbone.js 1.1.2
